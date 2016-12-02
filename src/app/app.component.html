@@ -1,3 +1,103 @@
-<h1>
-  {{title}}
-</h1>
+<div class="option-container">
+  Sample Size:
+  <input type="number" name="sample"
+  [(ngModel)]="sampleSize">
+</div>
+<div class="option-container">
+  Increment:
+  <input type="number" name="increment"
+  [(ngModel)]="increment">
+</div>
+<div class="option-container">
+  Monster Kills per turn:
+  <input type="number" name="sample"
+  [(ngModel)]="monsterKillsPerTurn">
+</div>
+<div class="option-container">
+  Monster AC
+  <input type="number" name="sample"
+  [(ngModel)]="monsterAc">
+</div>
+<div class="option-container">
+  Frightened DC:
+  <input type="number" name="sample"
+  [(ngModel)]="frightenedDC">
+</div>
+<div class="option-container">
+  Fright Save Modifier:
+  <input type="number" name="increment"
+  [(ngModel)]="frightSaveModifier">
+</div>
+<div class="option-container">
+  Damage Dice:
+  <input type="number" name="increment"
+  [(ngModel)]="damageDice">
+</div>
+<div class="option-container">
+  Damage Modifier:
+  <input type="number" name="increment"
+  [(ngModel)]="damageModifier">
+</div>
+<div class="button-container">
+  <button type="button"
+    name="battle button"
+    (click)="runSim()">
+    Run Simulation
+  </button>
+</div>
+<table class="table" id="result-table">
+  <thead>
+    <th>
+     Warrior Count
+    </th>
+    <th>
+      Tarrasque Wins
+    </th>
+    <th>
+      Warrior Wins
+    </th>
+    <th>
+      Average Rounds
+    </th>
+    <th>
+      Average Hp Left
+    </th>
+    <th>
+      Average Warriors Left
+    </th>
+    <th>
+      Average Damage Dealt per Warrior
+    </th>
+    <th>
+      Avg Rounds Missed per Warrior
+    </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let result of resultsArray">
+      <td>
+        {{result.warriorsInBattle | number}}
+      </td>
+      <td>
+        {{result.monsterWins | number}}
+      </td>
+      <td>
+        {{result.warriorWins | number}}
+      </td>
+      <td>
+        {{result.avgRounds | number}}
+      </td>
+      <td>
+        {{result.avgTotalHp | number}}
+      </td>
+      <td>
+        {{result.avgWarriorsLeft | number}}
+      </td>
+      <td>
+        {{result.avgDamage| number : '1.2-2' }}
+      </td>
+      <td>
+        {{result.avgTurnsMissed | number : '1.2-2'}}
+      </td>
+    </tr>
+  </tbody>
+</table>
