@@ -50,6 +50,7 @@ export class AppComponent implements OnInit{
   }
 
   runSim = () => {
+    console.log("running Sim");
     this.clearCache();
     while(this.warriors < 350){
       let sample = [];
