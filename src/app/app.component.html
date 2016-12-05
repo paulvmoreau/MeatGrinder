@@ -1,49 +1,62 @@
-<div class="option-container">
-  Sample Size:
-  <input type="number" name="sample"
-  [(ngModel)]="sampleSize">
+<div class="row">
+  <div class="option-container">
+    Sample Size:
+    <input type="number" name="sample"
+    [(ngModel)]="options.sampleSize">
+  </div>
+  <div class="option-container">
+    Increment:
+    <input type="number" name="increment"
+    [(ngModel)]="options.increment">
+  </div>
 </div>
-<div class="option-container">
-  Increment:
-  <input type="number" name="increment"
-  [(ngModel)]="increment">
+<div class="row">
+  <div class="option-container">
+    Monster Kills per turn:
+    <input type="number" name="sample"
+    [(ngModel)]="options.monsterKillsPerTurn">
+  </div>
+  <div class="option-container">
+    Monster AC
+    <input type="number" name="sample"
+    [(ngModel)]="options.monsterAc">
+  </div>
+  <div class="option-container">
+    Tarrasque Health:
+    <input type="number" name="increment"
+    [(ngModel)]="options.tarrasqueHp">
+  </div>
+  <div class="option-container">
+    Frightened DC:
+    <input type="number" name="sample"
+    [(ngModel)]="options.frightenedDC">
+  </div>
 </div>
-<div class="option-container">
-  Monster Kills per turn:
-  <input type="number" name="sample"
-  [(ngModel)]="monsterKillsPerTurn">
+<div class="row">
+  <div class="option-container">
+    Fright Save Range:
+    <input type="number" name="increment"
+    [(ngModel)]="options.frightSaveRange">
+  </div>
+  <div class="option-container">
+    Damage Dice:
+    <input type="number" name="increment"
+    [(ngModel)]="options.damageDice">
+  </div>
+  <div class="option-container">
+    Damage Modifier:
+    <input type="number" name="increment"
+    [(ngModel)]="options.damageModifier">
+  </div>
 </div>
-<div class="option-container">
-  Monster AC
-  <input type="number" name="sample"
-  [(ngModel)]="monsterAc">
-</div>
-<div class="option-container">
-  Frightened DC:
-  <input type="number" name="sample"
-  [(ngModel)]="frightenedDC">
-</div>
-<div class="option-container">
-  Fright Save Modifier:
-  <input type="number" name="increment"
-  [(ngModel)]="frightSaveModifier">
-</div>
-<div class="option-container">
-  Damage Dice:
-  <input type="number" name="increment"
-  [(ngModel)]="damageDice">
-</div>
-<div class="option-container">
-  Damage Modifier:
-  <input type="number" name="increment"
-  [(ngModel)]="damageModifier">
-</div>
-<div class="button-container">
-  <button type="button"
-    name="battle button"
-    (click)="runSim()">
-    Run Simulation
-  </button>
+<div class="row">
+  <div class="button-container">
+    <button type="button"
+      name="battle button"
+      (click)="runSim()">
+      Run Simulation
+    </button>
+  </div>
 </div>
 <table class="table" id="result-table">
   <thead>
@@ -66,10 +79,10 @@
       Average Warriors Left
     </th>
     <th>
-      Average Damage Dealt per Warrior
+      Average Damage Dealt per Battle
     </th>
     <th>
-      Avg Rounds Missed per Warrior
+      Avg Rounds Missed per Battle
     </th>
   </thead>
   <tbody>

@@ -21,3 +21,9 @@ tr:nth-child(odd) {background: #FFF}
   width: 100%;
   float: left;
 }
+
+.row{
+  width: 100%;
+  height: auto;
+  float: left;
+}
