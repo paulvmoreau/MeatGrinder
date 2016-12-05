@@ -91,7 +91,6 @@ export class BattleSimulatorService {
         fighting = false;
         this.winner = 'Tarrasque';
       }else if(this.options.totalHp <= 0){
-        console.log(warriorsLeft);
         fighting = false;
         this.winner = 'Warriors';
       }
@@ -198,9 +197,6 @@ export class BattleSimulatorService {
       let sample = [];
       for(var i =0; i < this.options.sampleSize ; i++){
         let stats = this.advancedBattleSim();
-        if(this.winner == "Warriors"){
-          console.log(stats);
-        }
         let battleResult = {
           warriorCount: this.warriors,
           winner: this.winner,
