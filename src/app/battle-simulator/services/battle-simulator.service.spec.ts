@@ -1,11 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, async, inject } from '@angular/core/testing';
 import { BattleSimulatorService } from './battle-simulator.service';
+import { WarriorService } from './warrior.service';
+
 
 describe('BattleSimulatorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BattleSimulatorService]
+      providers: [BattleSimulatorService, WarriorService]
     });
   });
 
