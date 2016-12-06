@@ -1,4 +1,5 @@
 /* tslint:disable:no-unused-variable */
+import {} from 'jasmine';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { BattleSimulatorService } from './battle-simulator.service';
 import { WarriorService } from './warrior.service';
