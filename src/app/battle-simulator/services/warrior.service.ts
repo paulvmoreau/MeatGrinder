@@ -6,9 +6,9 @@ export class WarriorService {
 
   constructor() { }
 
-  getWarriorArray = (size:number, options:{}) => {
+  getWarriorArray = (size: number, options: {}) => {
     let tempArray = [];
-    for(var i =0 ; i < size ; i++){
+    for (let i = 0 ; i < size ; i++) {
       let warrior = new Warrior();
       warrior.build(options);
       tempArray.push(warrior);

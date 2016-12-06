@@ -29,7 +29,7 @@ export class BattleSimulatorService {
       damageDice : 0,
       damageModifier : 0,
       tarrasqueHp : 0,
-    }
+    };
     this.warriors = this.options.increment;
   }
 
@@ -37,19 +37,18 @@ export class BattleSimulatorService {
     let warriorsLeft = this.warriors;
     let fighting = true;
     let options = this.options;
-    let success = false;
     let warriorOptions = {
       frightSaveRange: this.options.frightSaveRange,
       damageDice: this.options.damageDice,
       damageModifier: this.options.damageModifier,
       attackModifier: this.options.attackModifier
-    }
+    };
     this.roundCounter = 0;
     this.warriorArr = this.warriorService.getWarriorArray(this.warriors, warriorOptions);
-    while(fighting){
+    while (fighting) {
       this.warriorArr.forEach(function(warrior, warIndex){
-        if(warrior.isAlive()){
-          if(!warrior.isFrightImmune()){
+        if (warrior.isAlive()) {
+          if (!warrior.isFrightImmune()) {
             let frightRoll = 0;
             if (warrior.options.carryOverFright > 0 ) {
               frightRoll = warrior.rollFrightSave('disadvantage');
@@ -57,7 +56,7 @@ export class BattleSimulatorService {
               frightRoll = warrior.rollFrightSave();
             }
 
-            if(frightRoll >= options.frightenedDC){
+            if (frightRoll >= options.frightenedDC) {
               warrior.options.frightened = false;
               warrior.options.frightImmune = true;
             }else {
@@ -65,7 +64,7 @@ export class BattleSimulatorService {
               warrior.options.carryOverFright++;
             }
           }
-          if(!warrior.options.frightened){
+          if (!warrior.options.frightened) {
             let hitRoll = warrior.rollAttack();
             if (hitRoll >= options.monsterAc) {
               let damage = warrior.damageRoll(hitRoll);
@@ -77,9 +76,9 @@ export class BattleSimulatorService {
         }
       });
 
-      for(var i =0; i < options.monsterKillsPerTurn; i++){
-        let index = i+(this.roundCounter*options.monsterKillsPerTurn);
-        if(warriorsLeft > 0){
+      for (let i = 0; i < options.monsterKillsPerTurn; i++) {
+        let index = i + (this.roundCounter * options.monsterKillsPerTurn);
+        if (warriorsLeft > 0) {
           this.warriorArr[index].kill();
           warriorsLeft--;
         }
@@ -87,10 +86,10 @@ export class BattleSimulatorService {
 
       this.roundCounter++;
       this.options.totalHp = options.totalHp;
-      if(warriorsLeft <= 0){
+      if (warriorsLeft <= 0) {
         fighting = false;
         this.winner = 'Tarrasque';
-      }else if(this.options.totalHp <= 0){
+      }else if (this.options.totalHp <= 0) {
         fighting = false;
         this.winner = 'Warriors';
       }
@@ -109,16 +108,16 @@ export class BattleSimulatorService {
       totalHp: this.options.totalHp,
       warriorsLeft: 0,
       totalRounds: this.roundCounter
-    }
-    this.warriorArr.forEach(function(warrior:Warrior, warIndex){
+    };
+    this.warriorArr.forEach(function(warrior: Warrior, warIndex){
       stats.hitCounter += warrior.options.hitCount;
       stats.totalDamage += warrior.options.damageTotal;
       stats.totalTurnsMissed += warrior.options.carryOverFright;
-      if(warrior.isAlive()){
+      if (warrior.isAlive()) {
         stats.warriorsLeft++;
       }
     });
-    stats.averageDamage = stats.hitCounter > 0 ? stats.totalDamage / stats.hitCounter: 0;
+    stats.averageDamage = stats.hitCounter > 0 ? stats.totalDamage / stats.hitCounter : 0;
     stats.averageRoundFrightened = stats.totalTurnsMissed / this.warriorArr.length;
     return stats;
   }
@@ -142,7 +141,7 @@ export class BattleSimulatorService {
 
   processResults = () => {
     let sampleSize = this.options.sampleSize;
-    let tempArray = []
+    let tempArray = [];
     this.battleResults.forEach(function(sample){
       let stats = {
         warriorsInBattle: sample[0].stats.warriorsInBattle,
@@ -158,9 +157,9 @@ export class BattleSimulatorService {
         sumWarriorsLeft : 0,
         avgRounds: 0,
         sumRounds: 0,
-        monsterWins :0,
-        warriorWins :0
-      }
+        monsterWins: 0,
+        warriorWins: 0
+      };
       sample.forEach(function(result){
         stats.sumHits += result.stats.hitCounter;
         stats.sumDamage += result.stats.totalDamage;
@@ -168,9 +167,9 @@ export class BattleSimulatorService {
         stats.sumWarriorsLeft += result.stats.warriorsLeft;
         stats.sumRounds += result.stats.totalRounds;
         stats.sumTotalHp += result.stats.totalHp;
-        if(result.winner == 'Warriors'){
+        if (result.winner === 'Warriors') {
           stats.warriorWins++;
-        }else{
+        }else {
           stats.monsterWins++;
         }
       });
@@ -193,15 +192,15 @@ export class BattleSimulatorService {
   runSim = (options) => {
     this.options = options;
     this.clearCache();
-    while(this.warriors < 350){
+    while (this.warriors < 350) {
       let sample = [];
-      for(var i =0; i < this.options.sampleSize ; i++){
+      for (let i = 0; i < this.options.sampleSize ; i++) {
         let stats = this.advancedBattleSim();
         let battleResult = {
           warriorCount: this.warriors,
           winner: this.winner,
           stats : stats,
-        }
+        };
         sample.push(battleResult);
         this.resetData();
       }

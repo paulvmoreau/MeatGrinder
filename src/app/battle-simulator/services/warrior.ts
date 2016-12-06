@@ -10,7 +10,7 @@ export class Warrior {
       damageModifier: 0,
       attackModifier: 0,
       frightSaveModifier: 0,
-  }
+  };
 
   build = (options) => {
       this.options.damageDice = options.damageDice;
@@ -19,39 +19,39 @@ export class Warrior {
       this.options.frightSaveModifier = Math.floor(Math.random() * (options.frightSaveRange + 1));
   }
 
-  rollAttack = (advantageDisadvantage:string = 'none') => {
+  rollAttack = (advantageDisadvantage = 'none') => {
     let hitRoll = Math.ceil(Math.random() * 20) + this.options.attackModifier;
-    if(advantageDisadvantage != 'none'){
+    if (advantageDisadvantage !== 'none') {
       let secondRoll = Math.ceil(Math.random() * 20) + this.options.attackModifier;
-      if (advantageDisadvantage == 'advantage') {
+      if (advantageDisadvantage === 'advantage') {
         hitRoll = hitRoll <= secondRoll ? secondRoll : hitRoll;
-      }else if (advantageDisadvantage == 'disadvantage'){
+      }else if (advantageDisadvantage === 'disadvantage') {
         hitRoll = hitRoll >= secondRoll ? secondRoll : hitRoll;
       }else {
-        console.error("unknown disadvantage/advantage string: ", advantageDisadvantage);
+        console.error('unknown disadvantage/advantage string: ', advantageDisadvantage);
       }
     }
     return hitRoll;
   }
 
-  rollFrightSave = (advantageDisadvantage:string = 'none') =>{
+  rollFrightSave = (advantageDisadvantage = 'none') => {
     let saveRoll = Math.ceil(Math.random() * 20) + this.options.frightSaveModifier;
-    if(advantageDisadvantage != 'none'){
+    if (advantageDisadvantage !== 'none') {
       let secondRoll = Math.ceil(Math.random() * 20) + this.options.frightSaveModifier;
-      if (advantageDisadvantage == 'advantage') {
+      if (advantageDisadvantage === 'advantage') {
         saveRoll = saveRoll <= secondRoll ? secondRoll : saveRoll;
-      }else if (advantageDisadvantage == 'disadvantage'){
+      }else if (advantageDisadvantage === 'disadvantage') {
         saveRoll = saveRoll >= secondRoll ? secondRoll : saveRoll;
       }else {
-        console.error("unknown disadvantage/advantage string: ", advantageDisadvantage);
+        console.error('unknown disadvantage/advantage string: ', advantageDisadvantage);
       }
     }
     return saveRoll;
   }
 
-  damageRoll = (attackRoll:number) => {
+  damageRoll = (attackRoll: number) => {
     let damage = Math.ceil(Math.random() * this.options.damageDice) + this.options.damageModifier;
-    if(attackRoll == 20 + this.options.attackModifier){
+    if (attackRoll === 20 + this.options.attackModifier) {
       damage += Math.ceil(Math.random() * this.options.damageDice);
     }
     return damage;

@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BattleSimulatorService } from './services/battle-simulator.service';
-import { WarriorService } from './services/warrior.service';
 
 @Component({
   selector: 'app-battle-simulator',
   templateUrl: './battle-simulator.component.html',
   styleUrls: ['./battle-simulator.component.css']
 })
-export class BattleSimulatorComponent implements OnInit{
-  private winner;
-  private warriorArr = [];
+export class BattleSimulatorComponent implements OnInit {
   private options = {
     totalHp: 0,
     sampleSize : 15,
@@ -22,7 +19,7 @@ export class BattleSimulatorComponent implements OnInit{
     damageDice : 6,
     damageModifier : 3,
     tarrasqueHp : 676,
-  }
+  };
   private resultsArray = [];
 
   constructor(private battleSimulatorService: BattleSimulatorService) {
