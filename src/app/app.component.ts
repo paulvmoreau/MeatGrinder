@@ -8,12 +8,11 @@ import { BattleSimulatorComponent } from './battle-simulator/battle-simulator.co
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  private title = "Title Placeholder";
   constructor() {
-
   }
-  
-  ngOnInit() {
 
+  ngOnInit() {
   }
 
 }
