@@ -13,8 +13,8 @@ export class BattleSimulatorService {
   private stats;
   private battleResults = [];
   private resultsArray = [];
-  private options;
   private warriors;
+  public options;
 
   constructor(private warriorService: WarriorService) {
     this.options = {
@@ -55,7 +55,6 @@ export class BattleSimulatorService {
             }else {
               frightRoll = warrior.rollFrightSave();
             }
-
             if (frightRoll >= options.frightenedDC) {
               warrior.options.frightened = false;
               warrior.options.frightImmune = true;
@@ -64,14 +63,17 @@ export class BattleSimulatorService {
               warrior.options.carryOverFright++;
             }
           }
+          let hitRoll = 0;
           if (!warrior.options.frightened) {
-            let hitRoll = warrior.rollAttack();
-            if (hitRoll >= options.monsterAc) {
-              let damage = warrior.damageRoll(hitRoll);
-              options.totalHp -= damage;
-              warrior.options.damageTotal += damage;
-              warrior.options.hitCount++;
-            }
+            hitRoll = warrior.rollAttack();
+          }else {
+            hitRoll = warrior.rollAttack('disadvantage');
+          }
+          if (hitRoll >= options.monsterAc) {
+            let damage = warrior.damageRoll(hitRoll);
+            options.totalHp -= damage;
+            warrior.options.damageTotal += damage;
+            warrior.options.hitCount++;
           }
         }
       });

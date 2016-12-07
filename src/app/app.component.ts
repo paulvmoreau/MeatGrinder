@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   private title;
   constructor() {
-    this.title = 'Title Placeholder';
+    this.title = 'Level 3\'s Meat Grinder';
   }
 
-  ngOnInit() {  
+  ngOnInit() {
   }
 
 }

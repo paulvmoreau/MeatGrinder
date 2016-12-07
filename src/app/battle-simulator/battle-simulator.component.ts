@@ -15,7 +15,7 @@ export class BattleSimulatorComponent implements OnInit {
     monsterAc : 25,
     frightenedDC : 17,
     attackModifier : 5,
-    frightSaveRange : 2,
+    frightSaveRange : 4,
     damageDice : 6,
     damageModifier : 3,
     tarrasqueHp : 676,
